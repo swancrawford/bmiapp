@@ -1,12 +1,19 @@
-FROM python:3.8-slim-buster
-ENV PYTHONUNBUFFERED=1
+FROM ubuntu:16.04
+
+MAINTANER Your Name "youremail@domain.tld"
+
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY . /app
 
-EXPOSE 80
+ENTRYPOINT [ "python" ]
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=80"]
+CMD [ "app.py" ]
