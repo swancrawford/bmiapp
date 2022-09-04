@@ -5,4 +5,3 @@ RUN pip3 install -U pywebio
 RUN pip3 install flask
 COPY bmi.py /
 COPY hello.py /
-EXPOSE 5000
