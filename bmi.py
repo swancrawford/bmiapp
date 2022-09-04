@@ -18,5 +18,5 @@ def bmi():
             put_text('Your BMI: %.1f. Category: %s' % (BMI, status))
             break
 
-if __name__ == '__main__':
-    start_server(main, debug=True, port=8080)
+if __name__ == '__bmi__':
+    start_server(bmi, debug=True, port=8080)
