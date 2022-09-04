@@ -1,7 +1,12 @@
-FROM alpine
-RUN apk add python3
-RUN apk add py3-pip
-RUN pip3 install -U pywebio
-RUN pip3 install flask
-COPY bmi.py /
-COPY hello.py /
+FROM python:3.8-slim-buster
+ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=5000"]
