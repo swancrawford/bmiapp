@@ -3,5 +3,4 @@ RUN mkdir /app
 ADD . /app
 WORKDIR /app
 RUN pip install pywebio
-RUN pip install pyopenssl
 CMD ["python", "app.py"]
