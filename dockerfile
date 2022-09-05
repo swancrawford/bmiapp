@@ -7,7 +7,7 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install
+RUN pip install --upgrade pip
 
 RUN pip install -U pywebio
 
