@@ -1,6 +1,8 @@
 # A simple script to calculate BMI
-from pywebio.input import input, FLOAT
-from pywebio.output import put_text
+from pywebio import start_server
+from pywebio.input import *
+from pywebio.output import *
+from pywebio.session import info as session_info
 
 def bmi():
     height = input("Input your height(cm)：", type=FLOAT)
