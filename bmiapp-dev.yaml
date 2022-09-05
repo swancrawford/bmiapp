@@ -39,4 +39,4 @@ spec:
   ports:
   - port: 8080
   selector:
-    app: bmiapp
+    app: bmiapp-dev
