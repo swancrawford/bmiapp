@@ -7,9 +7,9 @@ COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip3 install
+RUN pip install
 
-RUN pip3 install -U pywebio
+RUN pip install -U pywebio
 
 COPY . /app
 
