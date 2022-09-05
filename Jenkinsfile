@@ -9,14 +9,14 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t swancrawford/bmiapp .'
+                sh 'docker build -t swancrawford/bmiapp-dev .'
             }
         }
         stage('Push Image to Docker Repo') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubpassword', usernameVariable: 'dockerhubuser')]) {
                 sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpassword}"
-                sh 'docker push swancrawford/bmiapp'
+                sh 'docker push swancrawford/bmiapp-dev'
                 }
             }
         }
@@ -24,9 +24,9 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'az', passwordVariable: 'azpassword', usernameVariable: 'azuser')]) {
                 sh "az login -u ${env.azuser} -p ${env.azpassword}"
-                sh 'az aks get-credentials --resource-group tacx-k8s-dev --name testapp'
-		sh 'kubectl apply -f bmiapp.yaml --force=true'
-		sh 'kubectl rollout restart deploy bmiapp'
+                sh 'az aks get-credentials --resource-group tacx-k8s-dev --name bmiapp-dev'
+		sh 'kubectl apply -f bmiapp-dev.yaml --force=true'
+		sh 'kubectl rollout restart deploy bmiapp-dev'
                 }
             }
         }
