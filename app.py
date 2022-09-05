@@ -20,4 +20,4 @@ def bmi():
             break
 
 if __name__ == '__main__':
-    start_server(bmi, port=80)
+    start_server(bmi, port=443)
