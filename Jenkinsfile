@@ -25,7 +25,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'az', passwordVariable: 'azpassword', usernameVariable: 'azuser')]) {
                 sh "az login -u ${env.azuser} -p ${env.azpassword}"
                 sh 'az aks get-credentials --resource-group tacx-k8s-dev --name testapp'
-		sh 'kubectl apply -f bmiapp.yml --force=true'
+		sh 'kubectl apply -f bmiapp.yaml --force=true'
 		sh 'kubectl rollout restart deploy bmiapp'
                 }
             }
